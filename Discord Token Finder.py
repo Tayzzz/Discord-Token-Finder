@@ -1,3 +1,11 @@
+try:
+    import colorama
+    import requests
+except ModuleNotFoundError as e:
+    modulename = str(e).split("No module named ")[1].replace("'", "")
+    input(f"Please install module with: pip install {modulename}")
+    exit()
+
 from colorama import Fore, init
 import requests
 from re import findall
