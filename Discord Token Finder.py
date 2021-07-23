@@ -1,11 +1,3 @@
-try:
-    import colorama
-    import requests
-except ModuleNotFoundError as e:
-    modulename = str(e).split("No module named ")[1].replace("'", "")
-    input(f"Please install module with: pip install {modulename}")
-    exit()
-
 from colorama import Fore, init
 import requests
 from re import findall
@@ -57,10 +49,12 @@ def main():
             else:
                 invalid.append(f"- {token}")
 
-        print(f"""{Fore.GREEN}Valid Tokens Founds:\n{Fore.RESET}""" +
-              "\n".join(valid) if len(valid) >= 1 else "- 0 valid tokens found...")
-        print(f"""\n{Fore.RED}Invalid Tokens Founds:\n{Fore.RESET}""" +
-              "\n".join(invalid))
+        print(f"{Fore.GREEN}Valid Tokens Founds:{Fore.RESET}")
+        print("\n".join(valid) if valid else "No tokens found...\n")
+
+        print(f"{Fore.RED}\nInvalid Tokens Founds:{Fore.RESET}")
+        print("\n".join(invalid)
+              if invalid else "No tokens found...")
 
     else:
         print(f"{Fore.RED}No tokens found...{Fore.RESET}")
